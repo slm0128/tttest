@@ -7,9 +7,7 @@ const token = localStorage.getItem('token');
 // Wenn kein Token vorhanden ist, ist der Nutzer nicht eingeloggt und wird
 // direkt zurück auf die Login-Seite geleitet.
 
-if (!token) {
-    window.location.replace('login.html');
-} else {
+
     // Nach erfolgreichem Login werden hier die benötigten Dashboard-Elemente gesammelt.
     const recipeForm = document.querySelector('#recipe-form');
     const recipeList = document.querySelector('#recipe-list');
@@ -93,7 +91,7 @@ if (!token) {
         showToast(message, isSuccess
             ? { title: 'Erfolgreich' }
             : { title: 'Fehler', icon: 'fa-exclamation-circle', variant: 'error' });
-    }
+    
 
     // Blendet den Toast aus und entfernt ihn nach der Animation aus dem Layout.
     function dismissDashboardToast() {
