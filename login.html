@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <!-- Basis-HTML-Informationen: Zeichensatz, Viewport und Titel der Seite -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Registrierung - Lezzetify</title>
+
+  <!-- Externe Stylesheets für Layout, Icons und das globale Design -->
+  <link href="library/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="library/css/all.min.css">
+  <link rel="stylesheet" href="library/css/global.css">
+
+  <!-- Eigenes Styling für die Authentifizierungsseite -->
+  <link rel="stylesheet" href="styles/login.css">
+
+  <!-- Favicon der App -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+  <!-- Navigationsleiste am oberen Rand der Seite -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+      <!-- Logo/Brand-Link zurück zur Startseite -->
+      <a class="navbar-brand fw-bold" href="index.html">
+        Lezzetify
+      </a>
+
+      <!-- Mobile-Menu-Button für kleine Bildschirme -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Navigation umschalten">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigationsmenü mit den wichtigsten Verlinkungen -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Startseite</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#rezepte">Rezepte</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hauptbereich der Auth-Seite: Login und Registrierung in einer zentralen Karte -->
+  <main class="flex-grow-1 d-flex align-items-center py-5 auth-main">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+
+          <!-- Card mit dem eigentlichen Login-/Registrierungsformular -->
+          <div class="card border-0 shadow-lg auth-card">
+            <div class="card-body p-5">
+
+              <!-- Überschrift über dem Formular -->
+              <div class="text-center mb-4">
+                <h2 class="fw-bold text-dark" id="auth-heading">Willkommen zurück!</h2>
+                <p class="text-muted">Melde dich an, um deine Rezepte zu speichern.</p>
+              </div>
+
+              <!-- Tab-Navigation zum Wechseln zwischen Anmelden und Registrieren -->
+              <ul class="nav nav-pills nav-justified mb-4" id="authTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active rounded-pill fw-bold" id="login-tab" data-bs-toggle="tab"
+                    data-bs-target="#login-content" type="button" role="tab" aria-controls="login-content"
+                    aria-selected="true">Anmelden</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link rounded-pill fw-bold" id="register-tab" data-bs-toggle="tab"
+                    data-bs-target="#register-content" type="button" role="tab" aria-controls="register-content"
+                    aria-selected="false">Registrieren</button>
+                </li>
+              </ul>
+
+              <!-- Inhalt der Tabs -->
+              <div class="tab-content" id="authTabContent">
+
+                <!-- LOGIN-FORMULAR -->
+                <div class="tab-pane fade show active" id="login-content" role="tabpanel" aria-labelledby="login-tab">
+                  <form id="login-form">
+
+                    <!-- Bereich für Fehlermeldungen beim Login -->
+                    <div id="error-message" class="alert alert-danger py-2 small auth-error" role="alert"
+                      aria-live="assertive"></div>
+
+                    <!-- E-Mail-Feld -->
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control rounded-3" id="loginEmail" placeholder="name@example.com"
+                        autocomplete="email" required>
+                      <label for="loginEmail">E-Mail Adresse</label>
+                    </div>
+
+                    <!-- Passwort-Feld mit Sichtbarkeitsschalter -->
+                    <div class="form-floating mb-3 auth-password-field">
+                      <input type="password" class="form-control rounded-3" id="loginPassword" placeholder="Passwort"
+                        autocomplete="current-password" required>
+                      <label for="loginPassword">Passwort</label>
+                      <button class="auth-password-toggle" type="button" data-password-toggle="loginPassword"
+                        aria-label="Passwort anzeigen" aria-pressed="false">
+                        <i class="far fa-eye" aria-hidden="true"></i>
+                      </button>
+                    </div>
+
+                    <!-- Login-Button -->
+                    <button class="btn btn-primary-custom w-100 py-2 fw-bold mb-2 auth-submit"
+                      type="submit">Einloggen</button>
+
+                  </form>
+                </div>
+
+                <!-- REGISTRIERUNGS-FORMULAR -->
+                <div class="tab-pane fade" id="register-content" role="tabpanel" aria-labelledby="register-tab">
+                  <form id="register-form">
+                    <!-- Meldungsbereich für Erfolgs-/Fehlermeldungen bei der Registrierung -->
+                    <div id="register-message" class="alert py-2 small d-none" role="status" aria-live="polite"></div>
+
+                    <!-- Benutzername -->
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control rounded-3" id="registerName" placeholder="Benutzername"
+                        autocomplete="name" maxlength="40" required>
+                      <label for="registerName">Benutzername</label>
+                    </div>
+
+                    <!-- E-Mail-Adresse für die Registrierung -->
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control rounded-3" id="registerEmail" required
+                        autocomplete="email" placeholder="name@example.com">
+                      <label for="registerEmail">E-Mail Adresse</label>
+                    </div>
+
+                    <!-- Passwort mit Mindestlänge und Sichtbarkeits-Button -->
+                    <div class="form-floating mb-3 auth-password-field">
+                      <input type="password" class="form-control rounded-3" id="registerPassword" minlength="12"
+                        maxlength="72" required autocomplete="new-password" placeholder="Passwort">
+                      <button class="auth-password-toggle" type="button" data-password-toggle="registerPassword"
+                        aria-label="Passwort anzeigen" aria-pressed="false">
+                        <i class="far fa-eye" aria-hidden="true"></i>
+                      </button>
+                      <label for="registerPassword">Passwort</label>
+                    </div>
+
+                    <!-- Hinweis zur Mindestlänge -->
+                    <p class="form-text mt-n2 mb-3">Mindestens 12 Zeichen</p>
+
+                    <!-- Checkbox für Nutzungsbedingungen -->
+                    <div class="form-check mb-4">
+                      <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                      <label class="form-check-label small text-muted" for="termsCheck">
+                        Ich akzeptiere die Nutzungsbedingungen.
+                      </label>
+                    </div>
+
+                    <!-- Button zur Erstellung des Kontos -->
+                    <button class="btn btn-primary-custom w-100 py-2 fw-bold auth-submit" type="submit">Konto
+                      erstellen</button>
+                  </form>
+                </div>
+
+              </div> <!-- Ende tab-content -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Fußbereich der Seite -->
+  <footer class="bg-dark text-white py-4 mt-auto">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2026 Lezzetify</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript-Bibliotheken und eigene Login-Logik -->
+  <script src="library/js/bootstrap.bundle.min.js"></script>
+  <script src="login.js"></script>
+</body>
+
+</html>
